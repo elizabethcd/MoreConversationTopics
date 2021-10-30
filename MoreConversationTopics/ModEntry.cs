@@ -1,0 +1,51 @@
+﻿using System;
+using Microsoft.Xna.Framework;
+using HarmonyLib;
+using StardewModdingAPI;
+using StardewModdingAPI.Events;
+using StardewModdingAPI.Utilities;
+using StardewValley;
+
+namespace MoreConversationTopics
+{
+    /// <summary>The mod entry point.</summary>
+    public class ModEntry : Mod
+    {
+
+        // Properties
+        private ModConfig Config;
+
+        /*********
+        ** Public methods
+        *********/
+        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
+        /// <param name="helper">Provides simplified APIs for writing mods.</param>
+        public override void Entry(IModHelper helper)
+        {
+            // Read in config file and create if needed
+            this.Config = this.Helper.ReadConfig<ModConfig>();
+            int weddingDuration = this.Config.WeddingDuration;
+
+            // Initialize the error logger in WeddingPatcher
+            WeddingPatcher.Initialize(this.Monitor, this.Config);
+
+            // Do the Harmony things
+            var harmony = new Harmony(this.ModManifest.UniqueID);
+            WeddingPatcher.Apply(harmony);
+
+            // Adds a command to check current active conversation topics
+            helper.ConsoleCommands.Add("current_conversation_topics", "Dumps currently active dialogue events", (str, strs) =>
+            {
+                if (!Context.IsWorldReady)
+                    return;
+
+                //if (!Game1.player.activeDialogueEvents.ContainsKey("testDialogueEvent"))
+                //{
+                //    Game1.player.activeDialogueEvents.Add("testDialogueEvent", 1);
+                //}
+
+                Monitor.Log(string.Join(", ", Game1.player.activeDialogueEvents.Keys),LogLevel.Debug);
+            });
+        }
+    }
+}

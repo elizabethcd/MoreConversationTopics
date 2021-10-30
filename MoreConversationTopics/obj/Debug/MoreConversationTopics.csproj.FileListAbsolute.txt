@@ -1,0 +1,6 @@
+/Users/lizabet/Projects/MoreConversationTopics/MoreConversationTopics/bin/Debug/MoreConversationTopics.dll
+/Users/lizabet/Projects/MoreConversationTopics/MoreConversationTopics/bin/Debug/MoreConversationTopics.pdb
+/Users/lizabet/Projects/MoreConversationTopics/MoreConversationTopics/obj/Debug/MoreConversationTopics.csproj.AssemblyReference.cache
+/Users/lizabet/Projects/MoreConversationTopics/MoreConversationTopics/obj/Debug/MoreConversationTopics.csproj.CoreCompileInputs.cache
+/Users/lizabet/Projects/MoreConversationTopics/MoreConversationTopics/obj/Debug/MoreConversationTopics.dll
+/Users/lizabet/Projects/MoreConversationTopics/MoreConversationTopics/obj/Debug/MoreConversationTopics.pdb
