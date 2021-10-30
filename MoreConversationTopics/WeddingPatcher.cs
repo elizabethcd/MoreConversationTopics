@@ -39,7 +39,7 @@ namespace MoreConversationTopics
             {
                 harmony.Patch(
                     original: AccessTools.Method(typeof(Utility), nameof(Utility.getPlayerWeddingEvent)),
-                    postfix: new HarmonyMethod(typeof(WeddingPatcher), nameof(WeddingPatcher.Utility_getWeddingEvent_Postfix))
+                    postfix: new HarmonyMethod(typeof(WeddingPatcher), nameof(WeddingPatcher.Utility_getPlayerWeddingEvent_Postfix))
                 );
             }
             catch (Exception ex)
@@ -50,15 +50,37 @@ namespace MoreConversationTopics
 
         // Method that is used to postfix
         private static void Utility_getWeddingEvent_Postfix(Farmer farmer)
+        {
+            try
             {
-                try
-                {
-                    farmer.activeDialogueEvents.Add("wedding", Config.WeddingDuration);
-                }
-                catch (Exception ex)
-                {
-                    Monitor.Log($"Failed to add wedding conversation topic with exception: {ex}", LogLevel.Error);
-                }
+                farmer.activeDialogueEvents.Add("wedding", Config.WeddingDuration);
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"Failed to add wedding conversation topic with exception: {ex}", LogLevel.Error);
             }
         }
+
+        private static void Utility_getPlayerWeddingEvent_Postfix(Farmer farmer, Farmer spouse)
+        {
+            try
+            {
+                farmer.activeDialogueEvents.Add("wedding", Config.WeddingDuration);
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"Failed to add player's wedding conversation topic with exception: {ex}", LogLevel.Error);
+            }
+
+            try
+            {
+                spouse.activeDialogueEvents.Add("wedding", Config.WeddingDuration);
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"Failed to add player's spouse wedding conversation topic with exception: {ex}", LogLevel.Error);
+            }
+        }
+    }
+
 }
