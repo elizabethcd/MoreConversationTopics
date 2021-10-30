@@ -1,1 +1,12 @@
 .DS_STORE
+
+# Packages
+**/packages/*
+
+# build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+
+.vs/
