@@ -41,6 +41,7 @@
     <Compile Include="ModConfig.cs" />
     <Compile Include="WeddingPatcher.cs" />
     <Compile Include="LuauPatcher.cs" />
+    <Compile Include="BirthPatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

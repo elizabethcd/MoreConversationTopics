@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using HarmonyLib;
 using StardewModdingAPI;
 using StardewValley;
-using System.Reflection;
 
 namespace MoreConversationTopics
 {
-    // Applies Harmony patches to Utility.cs to add a conversation topic for weddings.
+    // Applies Harmony patches to Event.cs to add a conversation topic for luau results.
     public class LuauPatcher
     {
         private static IMonitor Monitor;
