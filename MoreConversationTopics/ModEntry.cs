@@ -24,14 +24,15 @@ namespace MoreConversationTopics
         {
             // Read in config file and create if needed
             this.Config = this.Helper.ReadConfig<ModConfig>();
-            int weddingDuration = this.Config.WeddingDuration;
 
             // Initialize the error logger in WeddingPatcher
             WeddingPatcher.Initialize(this.Monitor, this.Config);
+            LuauPatcher.Initialize(this.Monitor, this.Config);
 
             // Do the Harmony things
             var harmony = new Harmony(this.ModManifest.UniqueID);
             WeddingPatcher.Apply(harmony);
+            LuauPatcher.Apply(harmony);
 
             // Adds a command to check current active conversation topics
             helper.ConsoleCommands.Add("current_conversation_topics", "Dumps currently active dialogue events", (str, strs) =>
@@ -39,6 +40,7 @@ namespace MoreConversationTopics
                 if (!Context.IsWorldReady)
                     return;
 
+                // Add a test event to see if it's working
                 //if (!Game1.player.activeDialogueEvents.ContainsKey("testDialogueEvent"))
                 //{
                 //    Game1.player.activeDialogueEvents.Add("testDialogueEvent", 1);

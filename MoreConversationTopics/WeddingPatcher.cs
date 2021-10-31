@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using HarmonyLib;
 using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Objects;
 
 namespace MoreConversationTopics
 {

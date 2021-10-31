@@ -40,6 +40,7 @@
     <Compile Include="ModEntry.cs" />
     <Compile Include="ModConfig.cs" />
     <Compile Include="WeddingPatcher.cs" />
+    <Compile Include="LuauPatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

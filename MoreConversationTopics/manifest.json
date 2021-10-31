@@ -5,5 +5,5 @@
   "Description": "Adds conversation topics that need code to add.",
   "UniqueID": "violetlizabet.MoreConvoTopics",
   "EntryDll": "MoreConversationTopics.dll",
-  "UpdateKeys": []
+  "UpdateKeys": ["Nexus:10008"],
 }
