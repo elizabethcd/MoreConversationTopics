@@ -7,6 +7,7 @@ namespace MoreConversationTopics
         public int WeddingDuration { get; set; }
         public int LuauDuration { get; set; }
         public int BirthDuration { get; set; }
+        public int DivorceDuration { get; set; }
 
         public ModConfig()
         {
@@ -14,6 +15,7 @@ namespace MoreConversationTopics
             this.WeddingDuration = 7;
             this.LuauDuration = 7;
             this.BirthDuration = 7;
+            this.DivorceDuration = 7;
         }
     }
 }
