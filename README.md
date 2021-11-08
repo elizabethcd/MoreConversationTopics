@@ -19,6 +19,10 @@ These conversation topics have default lengths but are also configurable in the 
    * `WeddingDuration` (default of 7 days, controls length of `wedding` conversation topic)
    * `LuauDuration` (default of 7 days, controls length of all luau conversation topics)
 
+## Console Command
+
+This mod also adds a new console command, "current_conversation_topics", which gives a list of the current active conversation topics. 
+
 ## Planned Conversation Topics To Be Added
    * `divorce` triggered when a player gets divorced
    * `birth` triggered when a player has a child (either via pregnancy or adoption)
