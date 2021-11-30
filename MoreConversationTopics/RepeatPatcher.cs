@@ -39,7 +39,7 @@ namespace MoreConversationTopics
             try
             {
                 harmony.Patch(
-                    original: AccessTools.Method(typeof(Farmer), nameof(Farmer.doDivorce)),
+                    original: AccessTools.Method(typeof(Farmer), nameof(Farmer.dayupdate)),
                     postfix: new HarmonyMethod(typeof(RepeatPatcher), nameof(RepeatPatcher.Farmer_dayupdate_Postfix))
                 );
             }
