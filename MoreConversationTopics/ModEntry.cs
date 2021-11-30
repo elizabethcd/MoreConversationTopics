@@ -53,5 +53,16 @@ namespace MoreConversationTopics
                 Monitor.Log(string.Join(", ", Game1.player.activeDialogueEvents.Keys),LogLevel.Debug);
             });
         }
+        public static Boolean isCTAddedByMod(string topic)
+        {
+            string[] modConversationTopics = new string[] {"wedding", "luauBest", "luauShorts", "luauPoisoned"};
+            foreach (string s in modConversationTopics) {
+                if (s == topic)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
