@@ -78,14 +78,14 @@ namespace MoreConversationTopics
             {
                 foreach (string s in __state)
                 {
-                    
-                    if (s is )
+                    if (ModEntry.isCTAddedByMod(s))
                     {
                         foreach (NPC npc in Utility.getAllCharacters())
                         {
                             if (npc.isVillager())
                             {
                                 __instance.mailReceived.Remove(npc.Name + "_" + s);
+
                             }
                         }
                     }
