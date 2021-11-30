@@ -43,6 +43,7 @@
     <Compile Include="LuauPatcher.cs" />
     <Compile Include="BirthPatcher.cs" />
     <Compile Include="DivorcePatcher.cs" />
+    <Compile Include="RepeatPatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
