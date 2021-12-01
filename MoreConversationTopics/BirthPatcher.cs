@@ -48,11 +48,11 @@ namespace MoreConversationTopics
         }
 
         // Method that is used to postfix
-        private static void BirthingEvent_setUp_Postfix(bool __result, bool isMale)
+        private static void BirthingEvent_setUp_Postfix(bool __result, bool ___isMale)
         {
             try
             {
-                if (isMale)
+                if (___isMale)
                 {
                     Game1.player.activeDialogueEvents.Add("babyBoy", Config.BirthDuration);
                 }
@@ -67,13 +67,13 @@ namespace MoreConversationTopics
             }
         }
 
-        private static void PlayerCoupleBirthingEvent_setUp_Postfix(PlayerCoupleBirthingEvent __instance, bool __result, Farmer ___spouse, bool isMale)
+        private static void PlayerCoupleBirthingEvent_setUp_Postfix(PlayerCoupleBirthingEvent __instance, bool __result, Farmer ___spouse, bool ___isMale)
         {
             try
             {
                 if (!__result)
                 {
-                    if (isMale)
+                    if (___isMale)
                     {
                         Game1.player.activeDialogueEvents.Add("babyBoy", Config.BirthDuration);
                     }
@@ -92,7 +92,7 @@ namespace MoreConversationTopics
             {
                 if (!__result)
                 {
-                    if (isMale)
+                    if (___isMale)
                     {
                         ___spouse.activeDialogueEvents.Add("babyBoy", Config.BirthDuration);
                     }
