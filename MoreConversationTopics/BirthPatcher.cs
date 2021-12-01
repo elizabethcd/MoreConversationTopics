@@ -48,11 +48,18 @@ namespace MoreConversationTopics
         }
 
         // Method that is used to postfix
-        private static void BirthingEvent_setUp_Postfix(bool __result)
+        private static void BirthingEvent_setUp_Postfix(bool __result, bool isMale)
         {
             try
             {
-                Game1.player.activeDialogueEvents.Add("birth", Config.BirthDuration);
+                if (isMale)
+                {
+                    Game1.player.activeDialogueEvents.Add("babyBoy", Config.BirthDuration);
+                }
+                else
+                {
+                    Game1.player.activeDialogueEvents.Add("babyGirl", Config.BirthDuration);
+                }
             }
             catch (Exception ex)
             {
@@ -60,13 +67,20 @@ namespace MoreConversationTopics
             }
         }
 
-        private static void PlayerCoupleBirthingEvent_setUp_Postfix(PlayerCoupleBirthingEvent __instance, bool __result, Farmer ___spouse)
+        private static void PlayerCoupleBirthingEvent_setUp_Postfix(PlayerCoupleBirthingEvent __instance, bool __result, Farmer ___spouse, bool isMale)
         {
             try
             {
                 if (!__result)
                 {
-                    Game1.player.activeDialogueEvents.Add("birth", Config.BirthDuration);
+                    if (isMale)
+                    {
+                        Game1.player.activeDialogueEvents.Add("babyBoy", Config.BirthDuration);
+                    }
+                    else
+                    {
+                        Game1.player.activeDialogueEvents.Add("babyGirl", Config.BirthDuration);
+                    }
                 }
             }
             catch (Exception ex)
@@ -78,7 +92,14 @@ namespace MoreConversationTopics
             {
                 if (!__result)
                 {
-                    ___spouse.activeDialogueEvents.Add("birth", Config.BirthDuration);
+                    if (isMale)
+                    {
+                        ___spouse.activeDialogueEvents.Add("babyBoy", Config.BirthDuration);
+                    }
+                    else
+                    {
+                        ___spouse.activeDialogueEvents.Add("babyGirl", Config.BirthDuration);
+                    }
                 }
             }
             catch (Exception ex)
