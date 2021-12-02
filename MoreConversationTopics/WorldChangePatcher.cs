@@ -6,7 +6,7 @@ using StardewValley.Events;
 
 namespace MoreConversationTopics
 {
-    // Applies Harmony patches to Farmer.cs to add a conversation topic for divorce.
+    // Applies Harmony patches to WorldChangeEvents.cs to add conversation topics for the Joja greenhouse and Leo's arrival
     public class WorldChangePatcher
     {
         private static IMonitor Monitor;
