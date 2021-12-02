@@ -62,7 +62,7 @@ namespace MoreConversationTopics
         // Helper function to check if a string is on the list of CTs added by this mod
         public static Boolean isCTAddedByMod(string topic)
         {
-            string[] modConversationTopics = new string[] {"wedding", "luauBest", "luauShorts", "luauPoisoned", "divorce", "birth"};
+            string[] modConversationTopics = new string[] {"wedding", "luauBest", "luauShorts", "luauPoisoned", "divorce", "babyBoy", "babyGirl"};
             foreach (string s in modConversationTopics) {
                 if (s == topic)
                 {
