@@ -31,6 +31,7 @@ namespace MoreConversationTopics
             BirthPatcher.Initialize(this.Monitor, this.Config);
             DivorcePatcher.Initialize(this.Monitor, this.Config);
             RepeatPatcher.Initialize(this.Monitor, this.Config);
+            WorldChangePatcher.Initialize(this.Monitor, this.Config);
 
             // Do the Harmony things
             var harmony = new Harmony(this.ModManifest.UniqueID);
@@ -39,6 +40,7 @@ namespace MoreConversationTopics
             BirthPatcher.Apply(harmony);
             DivorcePatcher.Apply(harmony);
             RepeatPatcher.Apply(harmony);
+            WorldChangePatcher.Apply(harmony);
 
             // Adds a command to check current active conversation topics
             helper.ConsoleCommands.Add("current_conversation_topics", "Dumps currently active dialogue events", (str, strs) =>
@@ -59,11 +61,11 @@ namespace MoreConversationTopics
             helper.ConsoleCommands.Add("player_hasmailflag", "Checks if the player has a mail flag.\n\nUsage: player_hasmailflag <flagName>\n- flagName: the possible mail flag name.", this.HasMailFlag);
         }
 
-        // Helper function to check if a string is on the list of CTs added by this mod
-        public static Boolean isCTAddedByMod(string topic)
+        // Helper function to check if a string is on the list of repeatable CTs added by this mod
+        public static Boolean isRepeatableCTAddedByMod(string topic)
         {
-            string[] modConversationTopics = new string[] {"wedding", "luauBest", "luauShorts", "luauPoisoned", "divorce", "babyBoy", "babyGirl"};
-            foreach (string s in modConversationTopics) {
+            string[] modRepeatableConversationTopics = new string[] {"wedding", "luauBest", "luauShorts", "luauPoisoned", "divorce", "babyBoy", "babyGirl"};
+            foreach (string s in modRepeatableConversationTopics) {
                 if (s == topic)
                 {
                     return true;

@@ -8,7 +8,7 @@ using StardewValley;
 
 namespace MoreConversationTopics
 {
-    // Applies Harmony patches to Farmer.cs to add a conversation topic for divorce.
+    // Applies Harmony patches to Farmer dayupdate() in order to allow conversation topics from this mod to repeat
     public class RepeatPatcher
     {
         private static IMonitor Monitor;
@@ -56,7 +56,7 @@ namespace MoreConversationTopics
             __state = new List<string>();
             try
             {
-                // Use the same logic as doDivorce() to decide which kind of divorce is happening and log for use in postfix
+                // Get a list of which conversation topics are ending today
                 foreach (string s2 in __instance.activeDialogueEvents.Keys.ToList())
                 {
                     if (__instance.activeDialogueEvents[s2] < 1)
@@ -74,11 +74,12 @@ namespace MoreConversationTopics
         // Method that is used to postfix
         private static void Farmer_dayupdate_Postfix(Farmer __instance, List<string> __state)
         {
+            // Remove the mail flags associated with each conversation topic added by this mod that is ending today
             try
             {
                 foreach (string s in __state)
                 {
-                    if (ModEntry.isCTAddedByMod(s))
+                    if (ModEntry.isRepeatableCTAddedByMod(s))
                     {
                         foreach (NPC npc in Utility.getAllCharacters())
                         {
