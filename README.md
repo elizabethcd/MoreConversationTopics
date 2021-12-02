@@ -51,7 +51,7 @@ Most of the achievements rely on stats that are tracked in [Stats as Tokens](htt
 
 ### Weddings and Births
 
-This mod adds a `wedding` conversation topic, but Stats as Tokens is also planning to track days married, so that you can add dialogue or other things based on anniversaries. This mod is planned to add a `birth` conversation topic right when your children get born, but you may also want to use the upcoming Stats as Tokens children tokens to trigger dialogue/events/changes based on how old your children are. 
+This mod adds a `wedding` conversation topic, but Stats as Tokens is also planning to track days married, so that you can add dialogue or other things based on anniversaries. This mod adds a `babyBoy` or `babyGirl` conversation topic right when your children get born, but you may also want to use the upcoming Stats as Tokens children tokens to trigger dialogue/events/changes based on how old your children are. 
 
 ### Events That Happen Once or Things with Mail Flags
 
