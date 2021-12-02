@@ -81,7 +81,7 @@ namespace MoreConversationTopics
             return false;
         }
 
-        // Has Mail Flag function for console command
+        // Checks mail flags for console command
         private void HasMailFlag(string command, string[] args)
         {
             if (!Context.IsWorldReady)
