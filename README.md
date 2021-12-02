@@ -28,10 +28,10 @@ These conversation topics have default lengths but are also configurable in the 
 
 This mod also adds some new console commands:
 
-* "current_conversation_topics", which gives a list of the current active conversation topics. 
-* "player_hasmailflag <flagName>", which tells you whether or not you have that mail flag.
-* "add_conversation_topic <topicName>", which adds the specified conversation topic with a duration of 1 day. (coming soon)
-* "remove_conversation_topic <topicName>", which removes the specified conversation topic. (coming soon)
+* `current_conversation_topics`, which gives a list of the current active conversation topics. 
+* `player_hasmailflag <flagName>`, which tells you whether or not you have that mail flag.
+* `add_conversation_topic <topicName>`, which adds the specified conversation topic with a duration of 1 day. (coming soon)
+* `remove_conversation_topic <topicName>`, which removes the specified conversation topic. (coming soon)
 
 ## Planned Conversation Topics To Be Added
    * `joja_Greenhouse` triggered when the player buys the greenhouse Joja improvement
