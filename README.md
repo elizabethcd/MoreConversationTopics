@@ -38,10 +38,13 @@ This mod also adds some new console commands:
    * `joja_Complete` triggered in the Joja warehouse celebration cutscene
    * `leoArrival` triggered when Leo moves to the valley
    * `meteor` triggered when a meteor hits the farm
-   * `horse` triggered when the player names a horse
-   * `pet` triggered when the player names a cat/dog
+   * `newHorse` triggered when the player names a horse
+   * `newPet` triggered when the player names a cat/dog
    * `passedOut` triggered when the player passes out
    * `beachBridgeFixed` triggered when the player fixes the bridge on the beach
+   * `playerWonEgghunt` triggered when the current player wins the egghunt
+   * `otherPlayerWonEgghunt` triggered when a different player wins the egghunt
+   * `AbigailWonEgghunt` triggered when Abigail wins the egghunt (note: needs compatibility check with mods that change who wins the egghunt)
 
 ## Some Examples of When It Might Be Advisable to Use Stats as Tokens Or Content Patcher Instead
 
