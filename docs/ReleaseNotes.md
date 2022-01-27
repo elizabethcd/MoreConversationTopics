@@ -2,7 +2,7 @@
 
 ## v1.0.2
 - Updates for game version 1.5.5 (not compatible with Stardew Valley 1.5.4 or earlier)
-- Adds ``divorce`` and ``birth`` conversation topics
+- Adds ``divorce``,``babyGirl``, and ``babyBoy`` conversation topics
 - Fixes crucial bug where conversation topics aren't repeatable in SDV normally, now the ones added by this mod are
 
 
