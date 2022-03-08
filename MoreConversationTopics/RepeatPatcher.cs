@@ -26,6 +26,7 @@ namespace MoreConversationTopics
         {
             try
             {
+                Monitor.Log("Adding Harmony pass-through prefix to dayUpdate() in Farmer.cs", LogLevel.Trace);
                 harmony.Patch(
                     original: AccessTools.Method(typeof(Farmer), nameof(Farmer.dayupdate)),
                     prefix: new HarmonyMethod(typeof(RepeatPatcher), nameof(RepeatPatcher.Farmer_dayupdate_Prefix))
@@ -38,6 +39,7 @@ namespace MoreConversationTopics
 
             try
             {
+                Monitor.Log("Adding Harmony postfix to dayUpdate() in Farmer.cs", LogLevel.Trace);
                 harmony.Patch(
                     original: AccessTools.Method(typeof(Farmer), nameof(Farmer.dayupdate)),
                     postfix: new HarmonyMethod(typeof(RepeatPatcher), nameof(RepeatPatcher.Farmer_dayupdate_Postfix))

@@ -23,6 +23,7 @@ namespace MoreConversationTopics
         {
             try
             {
+                Monitor.Log("Adding Harmony pass-through prefix to doDivorce() in Farmer.cs", LogLevel.Trace);
                 harmony.Patch(
                     original: AccessTools.Method(typeof(Farmer), nameof(Farmer.doDivorce)),
                     prefix: new HarmonyMethod(typeof(DivorcePatcher), nameof(DivorcePatcher.Farmer_doDivorce_Prefix))
@@ -35,6 +36,7 @@ namespace MoreConversationTopics
 
             try
             {
+                Monitor.Log("Adding Harmony postfix to doDivorce() in Farmer.cs", LogLevel.Trace);
                 harmony.Patch(
                     original: AccessTools.Method(typeof(Farmer), nameof(Farmer.doDivorce)),
                     postfix: new HarmonyMethod(typeof(DivorcePatcher), nameof(DivorcePatcher.Farmer_doDivorce_Postfix))

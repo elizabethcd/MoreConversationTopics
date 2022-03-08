@@ -23,6 +23,7 @@ namespace MoreConversationTopics
         {
             try
             {
+                Monitor.Log("Adding Harmony postfix to governorTaste() in Event.cs", LogLevel.Trace);
                 harmony.Patch(
                     original: AccessTools.Method(typeof(Event),"governorTaste"),
                     postfix: new HarmonyMethod(typeof(LuauPatcher), nameof(LuauPatcher.Event_governorTaste_Postfix))

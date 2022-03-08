@@ -24,6 +24,7 @@ namespace MoreConversationTopics
         {
             try
             {
+                Monitor.Log("Adding Harmony postfix to setUp() in WorldChangeEvent.cs", LogLevel.Trace);
                 harmony.Patch(
                     original: AccessTools.Method(typeof(WorldChangeEvent), nameof(WorldChangeEvent.setUp)),
                     postfix: new HarmonyMethod(typeof(WorldChangePatcher), nameof(WorldChangePatcher.WorldChangeEvent_setUp_Postfix))
