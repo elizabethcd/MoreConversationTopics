@@ -68,13 +68,13 @@ namespace MoreConversationTopics
             });
 
             // Adds a command to see if player has a given mail flag
-            helper.ConsoleCommands.Add("player_hasmailflag", "Checks if the player has a mail flag.\n\nUsage: player_hasmailflag <flagName>\n- flagName: the possible mail flag name.", this.HasMailFlag);
+            helper.ConsoleCommands.Add("vl.mct_hasflag", "Checks if the player has a mail flag.\n\nUsage: vl.mct_hasflag <flagName>\n- flagName: the possible mail flag name.", this.HasMailFlag);
 
             // Adds a command to add a conversation topic
-            helper.ConsoleCommands.Add("add_conversation_topic", "Adds the specified conversation topic with duration of 1 day.\n\nUsage: add_conversation_topic <flagName>\n- flagName: the conversation topic to add.", this.AddConversationTopic);
+            helper.ConsoleCommands.Add("vl.mct_add_CT", "Adds the specified conversation topic with duration of 1 day.\n\nUsage: vl.mct_add_CT <flagName>\n- flagName: the conversation topic to add.", this.AddConversationTopic);
 
             // Adds a command to remove a conversation topic
-            helper.ConsoleCommands.Add("remove_conversation_topic", "Removes the specified conversation topic.\n\nUsage: remove_conversation_topic <flagName>\n- flagName: the conversation topic to remove.", this.RemoveConversationTopic);
+            helper.ConsoleCommands.Add("vl.mct_remove_CT", "Removes the specified conversation topic.\n\nUsage: vl.mct_remove_CT <flagName>\n- flagName: the conversation topic to remove.", this.RemoveConversationTopic);
 
             // Add GMCM
             helper.Events.GameLoop.GameLaunched += this.RegisterGMCM;
