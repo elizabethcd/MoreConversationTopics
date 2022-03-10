@@ -165,6 +165,7 @@ namespace MoreConversationTopics
             return false;
         }
 
+        // Function to add conversation topics that may already exist
         public bool AddMaybePreExistingCT(Farmer playerToAddTo, string conversationTopic, int duration)
         {
             // Check if the conversation topic has already been added
