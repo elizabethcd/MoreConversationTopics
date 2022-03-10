@@ -2,17 +2,17 @@
   // GMCM
   "mod-description": "Short description of mod, used in GMCM",
   "WeddingDuration.title": "Wedding Duration",
-  "WeddingDuration.description": "<insert tooltip here>",
+  "WeddingDuration.description": "The townspeople may comment on your wedding for this many days afterwards.",
   "LuauDuration.title": "Luau Duration",
-  "LuauDuration.description": "<insert tooltip here>",
+  "LuauDuration.description": "The townspeople may comment on how the luau went for this many days afterwards.",
   "BirthDuration.title": "Birth Duration",
-  "BirthDuration.description": "<insert tooltip here>",
+  "BirthDuration.description": "The townspeople may comment on the birth of your child for this many days afterwards.",
   "DivorceDuration.title": "Divorce Duration",
-  "DivorceDuration.description": "<insert tooltip here>",
+  "DivorceDuration.description": "The townspeople may comment on your divorce for this many days afterwards.",
   "JojaGreenhouseDuration.title": "Joja Greenhouse Duration",
-  "JojaGreenhouseDuration.description": "<insert tooltip here>",
+  "JojaGreenhouseDuration.description": "The townspeople may comment on you paying Joja for a greenhouse for this many days afterwards.",
   "LeoArrivalDuration.title": "Leo Arrival Duration",
-  "LeoArrivalDuration.description":  "<insert tooltip here>",
+  "LeoArrivalDuration.description": "The townspeople may comment on Leo's arrival in the valley for this many days afterwards.",
 
   // Errors
   "IllFormatedConfig": "Config file seems ill-formated, using default. Please use Generic Mod Config Menu to configure.",
