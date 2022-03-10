@@ -8,6 +8,7 @@ namespace MoreConversationTopics
         public int DivorceDuration { get; set; }
         public int LuauDuration { get; set; }
         public int JojaGreenhouseDuration { get; set; }
+        public int JojaCompletionDuration { get; set; }
         public int JojaLightningDuration { get; set; }
         public int WillyBoatRepairDuration { get; set; }
         public int LeoArrivalDuration { get; set; }
@@ -20,12 +21,13 @@ namespace MoreConversationTopics
 
         public ModConfig()
         {
-            // Durations are set to 7 days by default, except joja_Greenhouse is 3 to match vanilla
+            // Durations are set to 7 days by default, except joja_Greenhouse and joja_Complete match vanilla
             this.WeddingDuration = 7;
             this.BirthDuration = 7;
             this.DivorceDuration = 7;
             this.LuauDuration = 7;
             this.JojaGreenhouseDuration = 3;
+            this.JojaCompletionDuration = 4;
             this.JojaLightningDuration = 7;
             this.WillyBoatRepairDuration = 7;
             this.LeoArrivalDuration = 7;

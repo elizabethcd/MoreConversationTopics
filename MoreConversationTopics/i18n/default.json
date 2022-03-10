@@ -11,6 +11,8 @@
   "LuauDuration.description": "People may comment on how the luau went for this many days afterwards.",
   "JojaGreenhouseDuration.title": "Joja Greenhouse Duration",
   "JojaGreenhouseDuration.description": "People may comment on you paying Joja for a greenhouse for this many days afterwards.",
+  "JojaCompletionDuration.title": "Joja Completion Duration",
+  "JojaCompletionDuration.description": "People may comment on the Joja Development Projects completion ceremony for this many days afterwards.",
   "JojaLightningDuration.title": "JojaMart Lightning Duration",
   "JojaLightningDuration.description": "People may comment on the abandoned JojaMart being struck by lightning for this many days afterwards.",
   "WillyBoatRepairDuration.title": "Willy Boat Repair Duration",
