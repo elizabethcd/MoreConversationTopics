@@ -32,28 +32,30 @@ namespace MoreConversationTopics
             catch (Exception)
             {
                 this.Config = new ModConfig();
-                this.Monitor.Log(this.Helper.Translation.Get("IllFormatedConfig"), LogLevel.Warn);
+                this.Monitor.Log(this.Helper.Translation.Get("IllFormattedConfig"), LogLevel.Warn);
             }
 
             // Initialize the error logger in WeddingPatcher
+            RepeatPatcher.Initialize(this.Monitor, this.Config);
             WeddingPatcher.Initialize(this.Monitor, this.Config);
-            LuauPatcher.Initialize(this.Monitor, this.Config);
             BirthPatcher.Initialize(this.Monitor, this.Config);
             DivorcePatcher.Initialize(this.Monitor, this.Config);
-            RepeatPatcher.Initialize(this.Monitor, this.Config);
+            LuauPatcher.Initialize(this.Monitor, this.Config);
             WorldChangePatcher.Initialize(this.Monitor, this.Config);
+            NightEventPatcher.Initialize(this.Monitor, this.Config);
 
             // Do the Harmony things
             var harmony = new Harmony(this.ModManifest.UniqueID);
+            RepeatPatcher.Apply(harmony);
             WeddingPatcher.Apply(harmony);
-            LuauPatcher.Apply(harmony);
             BirthPatcher.Apply(harmony);
             DivorcePatcher.Apply(harmony);
-            RepeatPatcher.Apply(harmony);
+            LuauPatcher.Apply(harmony);
             WorldChangePatcher.Apply(harmony);
+            NightEventPatcher.Apply(harmony);
 
             // Adds a command to check current active conversation topics
-            helper.ConsoleCommands.Add("current_conversation_topics", "Returns a list of the current active dialogue events", (str, strs) =>
+            helper.ConsoleCommands.Add("vl.mct.current_CTs", "Returns a list of the current active dialogue events", (str, strs) =>
             {
                 if (!Context.IsWorldReady)
                     return;
@@ -68,13 +70,13 @@ namespace MoreConversationTopics
             });
 
             // Adds a command to see if player has a given mail flag
-            helper.ConsoleCommands.Add("vl.mct_hasflag", "Checks if the player has a mail flag.\n\nUsage: vl.mct_hasflag <flagName>\n- flagName: the possible mail flag name.", this.HasMailFlag);
+            helper.ConsoleCommands.Add("vl.mct.has_flag", "Checks if the player has a mail flag.\n\nUsage: vl.mct_hasflag <flagName>\n- flagName: the possible mail flag name.", this.HasMailFlag);
 
             // Adds a command to add a conversation topic
-            helper.ConsoleCommands.Add("vl.mct_add_CT", "Adds the specified conversation topic with duration of 1 day.\n\nUsage: vl.mct_add_CT <flagName>\n- flagName: the conversation topic to add.", this.AddConversationTopic);
+            helper.ConsoleCommands.Add("vl.mct.add_CT", "Adds the specified conversation topic with duration of 1 day.\n\nUsage: vl.mct_add_CT <flagName> <duration>\n- flagName: the conversation topic to add.\n- duration: duration of conversation topic to add.", this.AddConversationTopic);
 
             // Adds a command to remove a conversation topic
-            helper.ConsoleCommands.Add("vl.mct_remove_CT", "Removes the specified conversation topic.\n\nUsage: vl.mct_remove_CT <flagName>\n- flagName: the conversation topic to remove.", this.RemoveConversationTopic);
+            helper.ConsoleCommands.Add("vl.mct.remove_CT", "Removes the specified conversation topic.\n\nUsage: vl.mct_remove_CT <flagName>\n- flagName: the conversation topic to remove.", this.RemoveConversationTopic);
 
             // Add GMCM
             helper.Events.GameLoop.GameLaunched += this.RegisterGMCM;
@@ -147,7 +149,12 @@ namespace MoreConversationTopics
         // Helper function to check if a string is on the list of repeatable CTs added by this mod
         public static Boolean isRepeatableCTAddedByMod(string topic)
         {
-            string[] modRepeatableConversationTopics = new string[] { "wedding", "luauBest", "luauShorts", "luauPoisoned", "divorce", "babyBoy", "babyGirl" };
+            string[] modRepeatableConversationTopics = new string[] {
+                "wedding", "divorce", "babyBoy", "babyGirl", // repeatable social CTs
+                "luauBest", "luauShorts", "luauPoisoned", // repeatable luau CTs
+                "meteoriteLandedOnFarm", "owlStatueLandedOnFarm", // repeatable night event CTs
+                "fairyFarmVisit", "witchSlimeHutVisit", "goldenWitchCoopVisit", "witchCoopVisit" // repeatable magical farm event CTs
+            };
             foreach (string s in modRepeatableConversationTopics)
             {
                 if (s == topic)
@@ -156,6 +163,19 @@ namespace MoreConversationTopics
                 }
             }
             return false;
+        }
+
+        public void AddMaybePreExistingCT(Farmer playerToAddTo, string conversationTopic, int duration)
+        {
+            // Check if the conversation topic has already been added
+            if (Game1.player.activeDialogueEvents.ContainsKey(conversationTopic))
+            {
+                this.Monitor.Log($"Not adding conversation topic {conversationTopic} because it's already there.", LogLevel.Warn);
+                return;
+            }
+
+            // If not, then add the conversation topic to the desired player
+            playerToAddTo.activeDialogueEvents.Add(conversationTopic, duration);
         }
 
         // Checks mail flags for console command
@@ -187,14 +207,26 @@ namespace MoreConversationTopics
             if (!Context.IsWorldReady)
                 return;
 
+            // Try to get the duration from the input arguments, default to 1 if cannot be parsed
+            int duration = 1;
             try
             {
-                Game1.player.activeDialogueEvents.Add(args[0], 1);
-                this.Monitor.Log($"Added conversation topic", LogLevel.Debug);
+                duration = Int32.Parse(args[1]);
             }
             catch (Exception ex)
             {
-                Monitor.Log($"Bad or missing argument with exception: {ex}", LogLevel.Error);
+                Monitor.Log($"Couldn't parse duration with exception {ex}, defaulting to 1 day", LogLevel.Warn);
+            }
+
+            // Add the conversation topic to the current player
+            try
+            {
+                AddMaybePreExistingCT(Game1.player, args[0], duration);
+                this.Monitor.Log($"Added conversation topic {args[0]} with duration {duration}", LogLevel.Debug);
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"Couldn't add conversation topic with exception: {ex}", LogLevel.Error);
             }
         }
 
@@ -207,7 +239,7 @@ namespace MoreConversationTopics
             try
             {
                 Game1.player.activeDialogueEvents.Remove(args[0]);
-                this.Monitor.Log($"Removed conversation topic", LogLevel.Debug);
+                this.Monitor.Log("Removed conversation topic", LogLevel.Debug);
             }
             catch (Exception ex)
             {

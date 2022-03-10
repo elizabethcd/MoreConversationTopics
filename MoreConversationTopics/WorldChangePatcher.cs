@@ -6,7 +6,7 @@ using StardewValley.Events;
 
 namespace MoreConversationTopics
 {
-    // Applies Harmony patches to WorldChangeEvents.cs to add conversation topics for the Joja greenhouse and Leo's arrival
+    // Applies Harmony patches to WorldChangeEvents.cs to add conversation topics for various overnight world changes
     public class WorldChangePatcher
     {
         private static IMonitor Monitor;
@@ -54,16 +54,37 @@ namespace MoreConversationTopics
                             Monitor.Log($"Failed to add Joja greenhouse conversation topic with exception: {ex}", LogLevel.Error);
                         }
                         break;
-                    // If the world change event in question is Leo arriving in the valley, add Leo arrival conversation topic
-                    case 14:
-                        // Add divorce conversation topic to current player
+                    // If the world change event is the abandoned JojaMart being struck by lightning, add JojaMart lightning conversation topic
+                    case 12:
                         try
                         {
-                            Game1.player.activeDialogueEvents.Add("leoArrival", Config.LeoArrivalDuration);
+                            Game1.player.activeDialogueEvents.Add("jojaMartStruckByLightning", Config.JojaLightningDuration);
                         }
                         catch (Exception ex)
                         {
-                            Monitor.Log($"Failed to add Leo arrival conversation topic with exception: {ex}", LogLevel.Error);
+                            Monitor.Log($"Failed to add abandonded JojaMart struck by lightning conversation topic with exception: {ex}", LogLevel.Error);
+                        }
+                        break;
+                    // If the world change event is Willy's boat being repaired, add Willy boat repair conversation topic
+                    case 13:
+                        try
+                        {
+                            Game1.player.activeDialogueEvents.Add("willyBoatRepaired", Config.WillyBoatRepairDuration);
+                        }
+                        catch (Exception ex)
+                        {
+                            Monitor.Log($"Failed to add Willy's boat repaired conversation topic with exception: {ex}", LogLevel.Error);
+                        }
+                        break;
+                    // If the world change event in question is Leo arriving in the valley, add Leo arrival conversation topic
+                    case 14:
+                        try
+                        {
+                            Game1.player.activeDialogueEvents.Add("leoValleyArrival", Config.LeoArrivalDuration);
+                        }
+                        catch (Exception ex)
+                        {
+                            Monitor.Log($"Failed to add Leo arrival to the valley conversation topic with exception: {ex}", LogLevel.Error);
                         }
                         break;
                 }
