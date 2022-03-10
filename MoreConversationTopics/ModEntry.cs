@@ -165,17 +165,18 @@ namespace MoreConversationTopics
             return false;
         }
 
-        public void AddMaybePreExistingCT(Farmer playerToAddTo, string conversationTopic, int duration)
+        public bool AddMaybePreExistingCT(Farmer playerToAddTo, string conversationTopic, int duration)
         {
             // Check if the conversation topic has already been added
             if (Game1.player.activeDialogueEvents.ContainsKey(conversationTopic))
             {
                 this.Monitor.Log($"Not adding conversation topic {conversationTopic} because it's already there.", LogLevel.Warn);
-                return;
+                return false;
             }
 
             // If not, then add the conversation topic to the desired player
             playerToAddTo.activeDialogueEvents.Add(conversationTopic, duration);
+            return true;
         }
 
         // Checks mail flags for console command
@@ -215,14 +216,17 @@ namespace MoreConversationTopics
             }
             catch (Exception ex)
             {
-                Monitor.Log($"Couldn't parse duration with exception {ex}, defaulting to 1 day", LogLevel.Warn);
+                Monitor.Log($"Couldn't parse duration as an integer, defaulting to 1 day", LogLevel.Warn);
             }
 
             // Add the conversation topic to the current player
             try
             {
-                AddMaybePreExistingCT(Game1.player, args[0], duration);
-                this.Monitor.Log($"Added conversation topic {args[0]} with duration {duration}", LogLevel.Debug);
+                bool success = AddMaybePreExistingCT(Game1.player, args[0], duration);
+                if (success)
+                {
+                    this.Monitor.Log($"Added conversation topic {args[0]} with duration {duration}", LogLevel.Debug);
+                }
             }
             catch (Exception ex)
             {
