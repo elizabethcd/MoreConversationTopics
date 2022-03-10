@@ -55,7 +55,7 @@ namespace MoreConversationTopics
                 Monitor.Log("Adding Harmony postfix to setUp() in FairyEvent.cs", LogLevel.Trace);
                 harmony.Patch(
                     original: AccessTools.Method(typeof(FairyEvent), nameof(FairyEvent.setUp)),
-                    postfix: new HarmonyMethod(typeof(NightEventPatcher), nameof(NightEventPatcher.SoundInTheNightEvent_setUp_Postfix))
+                    postfix: new HarmonyMethod(typeof(NightEventPatcher), nameof(NightEventPatcher.FairyEvent_setUp_Postfix))
                 );
             }
             catch (Exception ex)
