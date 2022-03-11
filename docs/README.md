@@ -10,6 +10,7 @@ Some good references when creating content packs that rely on this mod:
    * Lumisteria Villagers React To Marriage, which is a mod that relies on this mod: https://www.nexusmods.com/stardewvalley/mods/10009
 
 ## Current Conversation Topics Added By This Mod
+Since there are a lot of conversation topics added by this mod, I've divided them up into a few sections. 
 
 ### Social Conversation Topics
 These are related to various social events that happen in the game.
@@ -23,40 +24,52 @@ These are related to various social events that happen in the game.
 
 ### Joja-Route Missing Conversation Topics
 There are a few conversation topics missing when you go the Joja route, as compared to the Community Center route.
-* `joja_Greenhouse` (triggered when you buy the greenhouse repair from Joja)
-* `joja_Complete` (triggered during the Joja Community Development Program completion ceremony)
+   * `joja_Greenhouse` (triggered when you buy the greenhouse repair from Joja)
+   * `joja_Complete` (triggered during the Joja Community Development Program completion ceremony)
 
-### Events Around Town Conversation Topics
-Some of the events that happen around town never get commented on by the townspeople--now they can! 
-* `jojaMartStruckByLightning` (triggered after Community Center completion on a rainy day)
-* `willyBoatRepaired` (triggered when Willy's boat in the back room is repaired)
-* `leoValleyArrival` (triggered when Leo moves to the valley)
+### Events Around Town
+Some of the events that happen around town never get commented on by the townspeople—now they can! 
+   * `jojaMartStruckByLightning` (triggered after Community Center completion on a rainy day)
+   * `willyBoatRepaired` (triggered when Willy's boat in the back room is repaired)
+   * `leoValleyArrival` (triggered when Leo moves to the valley)
 
-### Overnight Events on Your Farm Conversation Topics
+### Overnight Events on Your Farm
 Some of these might go unnoticed by most townspeople, but the more magically-inclined ones might take an interest.
-* `UFOLandedOnFarm` (triggered when the Strange Capsule lands on your farm)
-* `meteoriteLandedOnFarm` (triggered when a meteorite lands on your farm, repeatable)
-* `owlStatueLandedOnFarm` (triggered when an owl statue lands on your farm, repeatable)
-* `railroadEarthquake` (triggered when the railroad is opened by an earthquake)
-* `witchSlimeHutVisit` (triggered when the witch visits your slime hutch, repeatable)
-* `witchCoopVisit` (triggered when the witch visits your coop, repeatable)
-* `goldenWitchCoopVisit` (triggered when the witch visits your coop post-perfection, repeatable)
-* `fairyFarmVisit` (triggered when the crop fairy visits your farm, repeatable)
+   * `UFOLandedOnFarm` (triggered when the Strange Capsule lands on your farm)
+   * `meteoriteLandedOnFarm` (triggered when a meteorite lands on your farm, repeatable)
+   * `owlStatueLandedOnFarm` (triggered when an owl statue lands on your farm, repeatable)
+   * `railroadEarthquake` (triggered when the railroad is opened by an earthquake)
+   * `witchSlimeHutVisit` (triggered when the witch visits your slime hutch, repeatable)
+   * `witchCoopVisit` (triggered when the witch visits your coop, repeatable)
+   * `goldenWitchCoopVisit` (triggered when the witch visits your coop post-perfection, repeatable)
+   * `fairyFarmVisit` (triggered when the crop fairy visits your farm, repeatable)
 
-These conversation topics have default lengths but are also configurable in the config file, with the following variables:
+## Configuration
+In general, players can ignore the config options, although GMCM support is included in case they do want to change them. If they would like any conversation topics to be skipped, they can try setting the length to 0—depending on the conversation topic this will minimize the number of time it gets commented on or eliminate it altogether.
+
+All the conversation topics have default lengths but are also configurable in the config file, with the following values:
    * `WeddingDuration` (default of 7 days, controls length of `wedding` conversation topic)
-   * `LuauDuration` (default of 7 days, controls length of all luau conversation topics)
    * `BirthDuration` (default of 7 days, controls length of `babyBoy` and `babyGirl` conversation topics)
    * `DivorceDuration` (default of 7 days, controls length of `divorce` conversation topic)
+   * `LuauDuration` (default of 7 days, controls length of all luau conversation topics)
+   * `JojaGreenhouseDuration` (default of 3 days to match ``cc_Greenhouse`` in the game, controls length of ``joja_Greenhouse`` conversation topic)
+   * `JojaCompletionDuration` (default of 4 days to match ``cc_Complete`` in the game, controls length of ``joja_Complete`` conversation topic)
+   * `JojaLightningDuration` (default of 7 days, controls length of `jojaMartStruckByLightning` conversation topic)
+   * `WillyBoatRepairDuration` (default of 7 days, controls length of `willyBoatRepaired` conversation topic)
+   * `LeoArrivalDuration` (default of 7 days, controls length of `leoValleyArrival` conversation topic)
+   * `UFOLandedDuration` (default of 7 days, controls length of `UFOLandedOnFarm` conversation topic)
+   * `MeteoriteLandedDuration` (default of 7 days, controls length of `meteoriteLandedOnFarm` conversation topic)
+   * `OwlStatueDuration` (default of 7 days, controls length of `owlStatueLandedOnFarm` conversation topic)
+   * `RailroadEarthquakeDuration` (default of 7 days, controls length of `railroadEarthquake` conversation topic)
+   * `WitchVisitDuration` (default of 7 days, controls length of all witch visit conversation topics)
+   * `FairyVisitDuration` (default of 7 days, controls length of `fairyFarmVisit` conversation topic)
 
 ## Console Commands
-
 This mod also adds some new console commands:
-
-* `vl.mct.current_CTs`, which prints a list of the current active conversation topics to the console. 
-* `vl.mct.has_flag <flagName>`, which tells you whether or not you have that mail flag.
-* `vl.mct.add_CT <topicName> <duration>`, which adds the specified conversation topic with a duration of 1 day by default, or can specify duration.
-* `vl.mct.remove_CT <topicName>`, which removes the specified conversation topic.
+   * `vl.mct.current_CTs`, which prints a list of the current active conversation topics to the console. 
+   * `vl.mct.has_flag <flagName>`, which tells you whether or not you have that mail flag.
+   * `vl.mct.add_CT <topicName> <duration>`, which adds the specified conversation topic with a duration of 1 day by default, or can specify duration.
+   * `vl.mct.remove_CT <topicName>`, which removes the specified conversation topic.
 
 ## Planned Conversation Topics To Be Added
    * `newHorse` triggered when the player gets a horse
