@@ -53,7 +53,7 @@ namespace MoreConversationTopics
         {
             try
             {
-                farmer.activeDialogueEvents.Add("wedding", Config.WeddingDuration);
+                MCTHelperFunctions.AddMaybePreExistingCT(farmer, "wedding", Config.WeddingDuration);
             }
             catch (Exception ex)
             {
@@ -65,7 +65,7 @@ namespace MoreConversationTopics
         {
             try
             {
-                farmer.activeDialogueEvents.Add("wedding", Config.WeddingDuration);
+                MCTHelperFunctions.AddMaybePreExistingCT(farmer, "wedding", Config.WeddingDuration);
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace MoreConversationTopics
 
             try
             {
-                spouse.activeDialogueEvents.Add("wedding", Config.WeddingDuration);
+                MCTHelperFunctions.AddMaybePreExistingCT(spouse, "wedding", Config.WeddingDuration);
             }
             catch (Exception ex)
             {
