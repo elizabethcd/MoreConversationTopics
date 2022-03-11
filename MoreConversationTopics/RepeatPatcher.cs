@@ -81,7 +81,7 @@ namespace MoreConversationTopics
             {
                 foreach (string s in __state)
                 {
-                    if (ModEntry.isRepeatableCTAddedByMod(s))
+                    if (MCTHelperFunctions.isRepeatableCTAddedByMod(s))
                     {
                         foreach (NPC npc in Utility.getAllCharacters())
                         {

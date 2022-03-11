@@ -52,16 +52,7 @@ namespace MoreConversationTopics
             // Adds a command to check current active conversation topics
             helper.ConsoleCommands.Add("vl.mct.current_CTs", "Returns a list of the current active dialogue events", (str, strs) =>
             {
-                if (!Context.IsWorldReady)
-                    return;
-
-                // Add a test event to see if it's working
-                //if (!Game1.player.activeDialogueEvents.ContainsKey("testDialogueEvent"))
-                //{
-                //    Game1.player.activeDialogueEvents.Add("testDialogueEvent", 1);
-                //}
-
-                Monitor.Log(string.Join(", ", Game1.player.activeDialogueEvents.Keys),LogLevel.Debug);
+                
             });
 
             // Adds a command to see if player has a given mail flag
@@ -148,7 +139,7 @@ namespace MoreConversationTopics
         // Adds asset editors when needed
         private void GameLoop_UpdateTicked(object sender, UpdateTickedEventArgs e)
         {
-            // If the countdown has expired, then add the joja event asset editor 5 ticks into the game
+            // If the countdown has expired, then add the Joja event asset editor 5 ticks into the game
             if (--countdown <= 0)
             {
                 this.Helper.Content.AssetEditors.Add(new JojaEventAssetEditor());
