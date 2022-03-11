@@ -10,10 +10,4 @@
   <ItemGroup>
     <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="HarmonyPatchers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HarmonyPatchers\" />
-  </ItemGroup>
 </Project>
