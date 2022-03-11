@@ -47,17 +47,17 @@ namespace MoreConversationTopics
                         }
                         // Split up the actions in the event script
                         string[] eventActions = eventScript.Split('/');
-                        int lastIndex = eventActions.Length - 1;
+                        int lastIndex = eventActions.Length;
 
                         // Check that there's enough commands in the event for it to be a valid event
-                        if (lastIndex < 3)
+                        if (lastIndex < 4)
                         {
                             Monitor.Log("Cannot edit Joja completion ceremony event due to script having too few commands to be a functional event.", LogLevel.Warn);
                             return;
                         }
 
                         // Split the event script into starting/ending actions
-                        string[] startingActions = eventActions[0..2];
+                        string[] startingActions = eventActions[0..3];
                         string startingActionsCombined = string.Join('/', startingActions);
                         string[] allOtherActions = eventActions[3..lastIndex];
                         string allOtherActionsCombined = string.Join('/', allOtherActions);

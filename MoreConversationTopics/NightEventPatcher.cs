@@ -68,7 +68,7 @@ namespace MoreConversationTopics
         private static void SoundInTheNightEvent_setUp_Postfix(bool __result, NetInt ___behavior)
         {
             // If the event didn't actually happen, no need to do anything
-            if (!__result)
+            if (__result)
             {
                 return;
             }
@@ -149,7 +149,7 @@ namespace MoreConversationTopics
                     MCTHelperFunctions.AddMaybePreExistingCT("witchSlimeHutVisit", Config.WitchVisitDuration);
                 }
                 // Otherwise, if the witch is visiting a coop, add one of the witch coop conversation topics
-                else if (___targetBuilding.buildingType.Equals("Coop"))
+                else if (___targetBuilding is Coop)
                 {
                     // If the witch is a golden witch (post-perfection coop visit), add the golden witch conversation topic
                     if (__instance.goldenWitch)
