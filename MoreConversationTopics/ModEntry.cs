@@ -50,10 +50,7 @@ namespace MoreConversationTopics
             NightEventPatcher.Apply(harmony);
 
             // Adds a command to check current active conversation topics
-            helper.ConsoleCommands.Add("vl.mct.current_CTs", "Returns a list of the current active dialogue events", (str, strs) =>
-            {
-                
-            });
+            helper.ConsoleCommands.Add("vl.mct.current_CTs", "Returns a list of the current active dialogue events.", MCTHelperFunctions.console_GetCurrentCTs);
 
             // Adds a command to see if player has a given mail flag
             helper.ConsoleCommands.Add("vl.mct.has_flag", "Checks if the player has a mail flag.\n\nUsage: vl.mct_hasflag <flagName>\n- flagName: the possible mail flag name.", MCTHelperFunctions.console_HasMailFlag);
