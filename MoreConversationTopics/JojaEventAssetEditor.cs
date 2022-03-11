@@ -5,9 +5,10 @@ namespace MoreConversationTopics
 {
     public class JojaEventAssetEditor : IAssetEditor
     {
-        private IMonitor Monitor;
-        private ModConfig Config;
-        public void Initialize(IMonitor monitor, ModConfig config)
+        private static IMonitor Monitor;
+        private static ModConfig Config;
+
+        public static void Initialize(IMonitor monitor, ModConfig config)
         {
             Monitor = monitor;
             Config = config;
@@ -51,15 +52,15 @@ namespace MoreConversationTopics
                         // Check that there's enough commands in the event for it to be a valid event
                         if (lastIndex < 3)
                         {
-                            Monitor.Log("Cannot edit Joja completion ceremony event due to script having too few commands to be a valid event.", LogLevel.Error);
+                            Monitor.Log("Cannot edit Joja completion ceremony event due to script having too few commands to be a functional event.", LogLevel.Warn);
                             return;
                         }
 
                         // Split the event script into starting/ending actions
                         string[] startingActions = eventActions[0..2];
-                        string startingActionsCombined = string.Join("/", startingActions);
+                        string startingActionsCombined = string.Join('/', startingActions);
                         string[] allOtherActions = eventActions[3..lastIndex];
-                        string allOtherActionsCombined = string.Join("/", allOtherActions);
+                        string allOtherActionsCombined = string.Join('/', allOtherActions);
 
                         // Build the conversation topic command
                         string addJojaCT = "/addConversationTopic joja_Complete " + Config.JojaCompletionDuration.ToString() + "/";

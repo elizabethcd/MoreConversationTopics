@@ -16,6 +16,7 @@ namespace MoreConversationTopics
 
         // Properties
         private ModConfig Config;
+        private int countdown;
 
         /*********
         ** Public methods
@@ -35,7 +36,7 @@ namespace MoreConversationTopics
                 this.Monitor.Log(this.Helper.Translation.Get("IllFormattedConfig"), LogLevel.Warn);
             }
 
-            // Initialize the error logger in WeddingPatcher
+            // Initialize the error logger and config in all the other files
             RepeatPatcher.Initialize(this.Monitor, this.Config);
             WeddingPatcher.Initialize(this.Monitor, this.Config);
             BirthPatcher.Initialize(this.Monitor, this.Config);
@@ -43,6 +44,7 @@ namespace MoreConversationTopics
             LuauPatcher.Initialize(this.Monitor, this.Config);
             WorldChangePatcher.Initialize(this.Monitor, this.Config);
             NightEventPatcher.Initialize(this.Monitor, this.Config);
+            JojaEventAssetEditor.Initialize(this.Monitor, this.Config);
 
             // Do the Harmony things
             var harmony = new Harmony(this.ModManifest.UniqueID);
@@ -80,6 +82,10 @@ namespace MoreConversationTopics
 
             // Add GMCM
             helper.Events.GameLoop.GameLaunched += this.RegisterGMCM;
+
+            // Add asset editor
+            countdown = 5;
+            helper.Events.GameLoop.UpdateTicked += this.GameLoop_UpdateTicked;
         }
 
         /// <summary>
@@ -178,6 +184,17 @@ namespace MoreConversationTopics
             // If not, then add the conversation topic to the desired player
             playerToAddTo.activeDialogueEvents.Add(conversationTopic, duration);
             return true;
+        }
+
+        // Adds asset editors when needed
+        private void GameLoop_UpdateTicked(object sender, UpdateTickedEventArgs e)
+        {
+            // If the countdown has expired, then add the joja event asset editor 5 ticks into the game
+            if (--countdown <= 0)
+            {
+                this.Helper.Content.AssetEditors.Add(new JojaEventAssetEditor());
+                this.Helper.Events.GameLoop.UpdateTicked -= GameLoop_UpdateTicked;
+            }
         }
 
         // Checks mail flags for console command
