@@ -34,7 +34,7 @@ Some of the events that happen around town never get commented on by the townspe
    * `leoValleyArrival` (triggered when Leo moves to the valley)
 
 ### Overnight Events on Your Farm
-Some of these might go unnoticed by most townspeople, but the more magically-inclined ones might take an interest.
+Some of these might go unnoticed by most townspeople, but the more magically-inclined ones (or your spouse) might take an interest.
    * `UFOLandedOnFarm` (triggered when the Strange Capsule lands on your farm)
    * `meteoriteLandedOnFarm` (triggered when a meteorite lands on your farm, repeatable)
    * `owlStatueLandedOnFarm` (triggered when an owl statue lands on your farm, repeatable)
