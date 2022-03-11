@@ -82,7 +82,7 @@ namespace MoreConversationTopics
                     case 0:
                         try
                         {
-                            Game1.player.activeDialogueEvents.Add("UFOLandedOnFarm", Config.UFOLandedDuration);
+                            MCTHelperFunctions.AddMaybePreExistingCT("UFOLandedOnFarm", Config.UFOLandedDuration);
                         }
                         catch (Exception ex)
                         {
@@ -93,7 +93,7 @@ namespace MoreConversationTopics
                     case 1:
                         try
                         {
-                            Game1.player.activeDialogueEvents.Add("meteoriteLandedOnFarm", Config.MeteoriteLandedDuration);
+                            MCTHelperFunctions.AddMaybePreExistingCT("meteoriteLandedOnFarm", Config.MeteoriteLandedDuration);
                         }
                         catch (Exception ex)
                         {
@@ -104,7 +104,7 @@ namespace MoreConversationTopics
                     case 3:
                         try
                         {
-                            Game1.player.activeDialogueEvents.Add("owlStatueLandedOnFarm", Config.OwlStatueDuration);
+                            MCTHelperFunctions.AddMaybePreExistingCT("owlStatueLandedOnFarm", Config.OwlStatueDuration);
                         }
                         catch (Exception ex)
                         {
@@ -115,7 +115,7 @@ namespace MoreConversationTopics
                     case 4:
                         try
                         {
-                            Game1.player.activeDialogueEvents.Add("railroadEarthquake", Config.MeteoriteLandedDuration);
+                            MCTHelperFunctions.AddMaybePreExistingCT("railroadEarthquake", Config.MeteoriteLandedDuration);
                         }
                         catch (Exception ex)
                         {
@@ -146,7 +146,7 @@ namespace MoreConversationTopics
                 // If the witch is visiting a Slime Hutch, add the witch slime hut conversation topic
                 if (___targetBuilding.buildingType.Equals("Slime Hutch"))
                 {
-                    Game1.player.activeDialogueEvents.Add("witchSlimeHutVisit", Config.WitchVisitDuration);
+                    MCTHelperFunctions.AddMaybePreExistingCT("witchSlimeHutVisit", Config.WitchVisitDuration);
                 }
                 // Otherwise, if the witch is visiting a coop, add one of the witch coop conversation topics
                 else if (___targetBuilding.buildingType.Equals("Coop"))
@@ -154,12 +154,12 @@ namespace MoreConversationTopics
                     // If the witch is a golden witch (post-perfection coop visit), add the golden witch conversation topic
                     if (__instance.goldenWitch)
                     {
-                        Game1.player.activeDialogueEvents.Add("goldenWitchCoopVisit", Config.WitchVisitDuration);
+                        MCTHelperFunctions.AddMaybePreExistingCT("goldenWitchCoopVisit", Config.WitchVisitDuration);
                     }
                     // Otherwise add the normal witch coop visit conversation topic
                     else
                     {
-                        Game1.player.activeDialogueEvents.Add("witchCoopVisit", Config.WitchVisitDuration);
+                        MCTHelperFunctions.AddMaybePreExistingCT("witchCoopVisit", Config.WitchVisitDuration);
                     }
                 }
             }
@@ -181,7 +181,7 @@ namespace MoreConversationTopics
             // Add the fairy event conversation topic
             try
             {
-                Game1.player.activeDialogueEvents.Add("fairyFarmVisit", Config.FairyVisitDuration);
+                MCTHelperFunctions.AddMaybePreExistingCT("fairyFarmVisit", Config.FairyVisitDuration);
             }
             catch (Exception ex)
             {
