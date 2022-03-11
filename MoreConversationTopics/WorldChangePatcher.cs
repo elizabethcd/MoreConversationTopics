@@ -34,19 +34,6 @@ namespace MoreConversationTopics
             {
                 Monitor.Log($"Failed to add postfix to world change events with exception: {ex}", LogLevel.Error);
             }
-
-            try
-            {
-                Monitor.Log("Adding Harmony postfix to command_awardFestivalPrize() in Event.cs", LogLevel.Trace);
-                harmony.Patch(
-                    original: AccessTools.Method(typeof(Event), nameof(Event.command_awardFestivalPrize)),
-                    postfix: new HarmonyMethod(typeof(WorldChangePatcher), nameof(WorldChangePatcher.Event_command_awardFestivalPrize_Postfix))
-                );
-            }
-            catch (Exception ex)
-            {
-                Monitor.Log($"Failed to add postfix to event function adding prize with exception: {ex}", LogLevel.Error);
-            }
         }
 
         // Method that is used to postfix world change events
@@ -107,29 +94,6 @@ namespace MoreConversationTopics
                 Monitor.Log($"Failed to do world change event postfix with exception: {ex}", LogLevel.Error);
             }
 
-        }
-
-        // Method used to postfix in Event to find Joja completion
-        private static void Event_command_awardFestivalPrize_Postfix(string[] __split)
-        {
-            // If we're in the wrong section of the case tree (from vanilla), do nothing
-            if (__split.Length <= 1)
-            {
-                return;
-            }
-
-            // If we are in the Joja completion ceremony, add the conversation topic
-            try
-            {
-                if (__split[1].ToLower() == "joja")
-                {
-                    Game1.player.activeDialogueEvents.Add("joja_Complete", Config.JojaCompletionDuration);
-                }
-            }
-            catch (Exception ex)
-            {
-                Monitor.Log($"Failed to do joja completion event postfix with exception: {ex}", LogLevel.Error);
-            }
         }
     }
 

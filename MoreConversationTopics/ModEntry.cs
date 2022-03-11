@@ -194,6 +194,7 @@ namespace MoreConversationTopics
             {
                 this.Helper.Content.AssetEditors.Add(new JojaEventAssetEditor());
                 this.Helper.Events.GameLoop.UpdateTicked -= GameLoop_UpdateTicked;
+                Monitor.Log("Registered Joja completion event asset editor", LogLevel.Trace);
             }
         }
 
@@ -232,7 +233,7 @@ namespace MoreConversationTopics
             {
                 duration = Int32.Parse(args[1]);
             }
-            catch (Exception ex)
+            catch
             {
                 Monitor.Log($"Couldn't parse duration as an integer, defaulting to 1 day", LogLevel.Warn);
             }
