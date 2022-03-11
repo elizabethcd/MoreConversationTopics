@@ -45,7 +45,22 @@ namespace MoreConversationTopics
             return false;
         }
 
-        // Function to add conversation topics that may already exist
+        // Function to add conversation topics that may already exist to the current player
+        public static bool AddMaybePreExistingCT(string conversationTopic, int duration)
+        {
+            // Check if the conversation topic has already been added
+            if (Game1.player.activeDialogueEvents.ContainsKey(conversationTopic))
+            {
+                Monitor.Log($"Not adding conversation topic {conversationTopic} because it's already there.", LogLevel.Warn);
+                return false;
+            }
+
+            // If not, then add the conversation topic to the desired player
+            Game1.player.activeDialogueEvents.Add(conversationTopic, duration);
+            return true;
+        }
+
+        // Function to add conversation topics that may already exist to any player
         public static bool AddMaybePreExistingCT(Farmer playerToAddTo, string conversationTopic, int duration)
         {
             // Check if the conversation topic has already been added
@@ -119,7 +134,7 @@ namespace MoreConversationTopics
             // Add the conversation topic to the current player
             try
             {
-                bool success = AddMaybePreExistingCT(Game1.player, args[0], duration);
+                bool success = AddMaybePreExistingCT(args[0], duration);
                 if (success)
                 {
                     Monitor.Log($"Added conversation topic {args[0]} with duration {duration}", LogLevel.Debug);
