@@ -47,7 +47,7 @@ namespace MoreConversationTopics
                     case 0:
                         try
                         {
-                            Game1.player.activeDialogueEvents.Add("joja_Greenhouse", Config.JojaGreenhouseDuration);
+                            MCTHelperFunctions.AddMaybePreExistingCT("joja_Greenhouse", Config.JojaGreenhouseDuration);
                         }
                         catch (Exception ex)
                         {
@@ -58,7 +58,7 @@ namespace MoreConversationTopics
                     case 12:
                         try
                         {
-                            Game1.player.activeDialogueEvents.Add("jojaMartStruckByLightning", Config.JojaLightningDuration);
+                            MCTHelperFunctions.AddMaybePreExistingCT("jojaMartStruckByLightning", Config.JojaLightningDuration);
                         }
                         catch (Exception ex)
                         {
@@ -69,7 +69,7 @@ namespace MoreConversationTopics
                     case 13:
                         try
                         {
-                            Game1.player.activeDialogueEvents.Add("willyBoatRepaired", Config.WillyBoatRepairDuration);
+                            MCTHelperFunctions.AddMaybePreExistingCT("willyBoatRepaired", Config.WillyBoatRepairDuration);
                         }
                         catch (Exception ex)
                         {
@@ -80,7 +80,7 @@ namespace MoreConversationTopics
                     case 14:
                         try
                         {
-                            Game1.player.activeDialogueEvents.Add("leoValleyArrival", Config.LeoArrivalDuration);
+                            MCTHelperFunctions.AddMaybePreExistingCT("leoValleyArrival", Config.LeoArrivalDuration);
                         }
                         catch (Exception ex)
                         {
