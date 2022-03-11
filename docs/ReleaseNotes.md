@@ -7,6 +7,7 @@
 - Adds GMCM support (thanks to atravita)
 - Harmony patches now logged to trace for better debugging support
 - Some refactoring to put helper functions into a separate class
+- Adding GitHub releases
 
 ## v1.0.2
 - Updates for game version 1.5.5 (not compatible with Stardew Valley 1.5.4 or earlier)
