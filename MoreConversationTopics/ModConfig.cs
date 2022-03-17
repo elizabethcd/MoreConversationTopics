@@ -18,6 +18,7 @@ namespace MoreConversationTopics
         public int RailroadEarthquakeDuration { get; set; }
         public int WitchVisitDuration { get; set; }
         public int FairyVisitDuration { get; set; }
+        public int IslandResortDuration { get; set; }
 
         public ModConfig()
         {
@@ -37,6 +38,7 @@ namespace MoreConversationTopics
             this.RailroadEarthquakeDuration = 7;
             this.WitchVisitDuration = 7;
             this.FairyVisitDuration = 7;
+            this.IslandResortDuration = 7;
         }
     }
 }

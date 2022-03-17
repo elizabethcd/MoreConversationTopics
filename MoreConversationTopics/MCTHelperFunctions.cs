@@ -24,6 +24,7 @@ namespace MoreConversationTopics
             WorldChangePatcher.Initialize(Monitor, Config);
             NightEventPatcher.Initialize(Monitor, Config);
             JojaEventAssetEditor.Initialize(Monitor, Config);
+            IslandPatcher.Initialize(Monitor, Config);
         }
 
         // Helper function to check if a string is on the list of repeatable CTs added by this mod

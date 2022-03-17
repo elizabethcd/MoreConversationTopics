@@ -48,6 +48,7 @@ namespace MoreConversationTopics
             LuauPatcher.Apply(harmony);
             WorldChangePatcher.Apply(harmony);
             NightEventPatcher.Apply(harmony);
+            IslandPatcher.Apply(harmony);
 
             // Adds a command to check current active conversation topics
             helper.ConsoleCommands.Add("vl.mct.current_CTs", "Returns a list of the current active dialogue events.", MCTHelperFunctions.console_GetCurrentCTs);
