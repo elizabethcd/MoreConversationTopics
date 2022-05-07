@@ -4,7 +4,6 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using MoreConversationTopics.Integrations;
 using System.Reflection;
-using System.Collections.Generic;
 
 namespace MoreConversationTopics
 {
@@ -62,10 +61,10 @@ namespace MoreConversationTopics
             helper.ConsoleCommands.Add("vl.mct.remove_CT", "Removes the specified conversation topic.\n\nUsage: vl.mct_remove_CT <topicName>\n- topicName: the conversation topic to remove.", MCTHelperFunctions.console_RemoveConversationTopic);
 
             // Adds a command to check if a conversation topic is repeatable
-            helper.ConsoleCommands.Add("vl.mct.isRepeatableCT", "Checks whether the specified conversation topic is repeatable.\n\nUsage: vl.mct_remove_CT <topicName>\n- topicName: the conversation topic to check.", MCTHelperFunctions.console_IsRepeatableCT);
+            helper.ConsoleCommands.Add("vl.mct.is_repeatable_CT", "Checks whether the specified conversation topic is repeatable.\n\nUsage: vl.mct_remove_CT <topicName>\n- topicName: the conversation topic to check.", MCTHelperFunctions.console_IsRepeatableCT);
 
             // Adds a command to print all repeatable conversation topics
-            helper.ConsoleCommands.Add("vl.mct.repeatableCTs", "Returns a list of all repeatable conversation topics.", MCTHelperFunctions.console_AllRepeatableCTs);
+            helper.ConsoleCommands.Add("vl.mct.repeatable_CTs", "Returns a list of all repeatable conversation topics.", MCTHelperFunctions.console_AllRepeatableCTs);
 
             // Add GMCM
             helper.Events.GameLoop.GameLaunched += this.RegisterGMCM;
