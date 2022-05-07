@@ -4,6 +4,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using MoreConversationTopics.Integrations;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace MoreConversationTopics
 {
@@ -13,6 +14,8 @@ namespace MoreConversationTopics
 
         // Properties
         private ModConfig Config;
+
+        public const string modContentPath = "Mods/vl.mct/RepeatableTopics";
 
         /*********
         ** Public methods
@@ -33,7 +36,7 @@ namespace MoreConversationTopics
             }
 
             // Initialize the error logger and config in all the other files via a helper function
-            MCTHelperFunctions.Initialize(this.Monitor, this.Config);
+            MCTHelperFunctions.Initialize(this.Monitor, this.Config, helper);
 
             // Do the Harmony things
             var harmony = new Harmony(this.ModManifest.UniqueID);
@@ -53,10 +56,16 @@ namespace MoreConversationTopics
             helper.ConsoleCommands.Add("vl.mct.has_flag", "Checks if the player has a mail flag.\n\nUsage: vl.mct_hasflag <flagName>\n- flagName: the possible mail flag name.", MCTHelperFunctions.console_HasMailFlag);
 
             // Adds a command to add a conversation topic
-            helper.ConsoleCommands.Add("vl.mct.add_CT", "Adds the specified conversation topic with duration of 1 day.\n\nUsage: vl.mct_add_CT <flagName> <duration>\n- flagName: the conversation topic to add.\n- duration: duration of conversation topic to add.", MCTHelperFunctions.console_AddConversationTopic);
+            helper.ConsoleCommands.Add("vl.mct.add_CT", "Adds the specified conversation topic with duration of 1 day.\n\nUsage: vl.mct_add_CT <topicName> <duration>\n- topicName: the conversation topic to add.\n- duration: duration of conversation topic to add.", MCTHelperFunctions.console_AddConversationTopic);
 
             // Adds a command to remove a conversation topic
-            helper.ConsoleCommands.Add("vl.mct.remove_CT", "Removes the specified conversation topic.\n\nUsage: vl.mct_remove_CT <flagName>\n- flagName: the conversation topic to remove.", MCTHelperFunctions.console_RemoveConversationTopic);
+            helper.ConsoleCommands.Add("vl.mct.remove_CT", "Removes the specified conversation topic.\n\nUsage: vl.mct_remove_CT <topicName>\n- topicName: the conversation topic to remove.", MCTHelperFunctions.console_RemoveConversationTopic);
+
+            // Adds a command to check if a conversation topic is repeatable
+            helper.ConsoleCommands.Add("vl.mct.isRepeatableCT", "Checks whether the specified conversation topic is repeatable.\n\nUsage: vl.mct_remove_CT <topicName>\n- topicName: the conversation topic to check.", MCTHelperFunctions.console_IsRepeatableCT);
+
+            // Adds a command to print all repeatable conversation topics
+            helper.ConsoleCommands.Add("vl.mct.repeatableCTs", "Returns a list of all repeatable conversation topics.", MCTHelperFunctions.console_AllRepeatableCTs);
 
             // Add GMCM
             helper.Events.GameLoop.GameLaunched += this.RegisterGMCM;
@@ -66,7 +75,10 @@ namespace MoreConversationTopics
         }
 
         private void OnAssetRequested(object sender, AssetRequestedEventArgs e)
-            => JojaEventAssetEditor.Edit(e);
+        {
+            JojaEventAssetEditor.Edit(e);
+            MCTHelperFunctions.LoadRepeatTopics(e);
+        }
 
         /// <summary>
         /// Generates the GMCM for this mod by looking at the structure of the config class.

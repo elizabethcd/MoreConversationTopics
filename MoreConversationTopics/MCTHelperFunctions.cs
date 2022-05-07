@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using StardewValley;
 
 namespace MoreConversationTopics
@@ -11,6 +12,7 @@ namespace MoreConversationTopics
     {
         private static IMonitor Monitor;
         private static ModConfig Config;
+        private static IModHelper Helper;
 
         private static readonly string[] modRepeatableConversationTopics = new string[] {
                 "wedding", "divorce", "babyBoy", "babyGirl", // repeatable social CTs
@@ -20,10 +22,11 @@ namespace MoreConversationTopics
             };
 
         // Initialize Monitor and Config for this class and all other classes
-        public static void Initialize(IMonitor monitor, ModConfig config)
+        public static void Initialize(IMonitor monitor, ModConfig config, IModHelper helper)
         {
             Monitor = monitor;
             Config = config;
+            Helper = helper;
 
             RepeatPatcher.Initialize(Monitor, Config);
             WeddingPatcher.Initialize(Monitor, Config);
@@ -38,7 +41,18 @@ namespace MoreConversationTopics
 
         // Helper function to check if a string is on the list of repeatable CTs added by this mod
         public static bool IsRepeatableCTAddedByMod(string topic)
-            => modRepeatableConversationTopics.Contains(topic);
+        {
+            Dictionary<string,string> topicsDict = Helper.GameContent.Load<Dictionary<string, string>>(ModEntry.modContentPath);
+            return topicsDict.ContainsKey(topic);
+        }
+
+        internal static void LoadRepeatTopics(AssetRequestedEventArgs e)
+        {
+            if (e.NameWithoutLocale.IsEquivalentTo(ModEntry.modContentPath))
+            {
+                e.LoadFrom(() => modRepeatableConversationTopics.ToDictionary((k) => k, (v) => string.Empty), AssetLoadPriority.Low);
+            }
+        }
 
         // Function to add conversation topics that may already exist to the current player
         public static void AddOrExtendCT(string conversationTopic, int duration)
@@ -83,7 +97,7 @@ namespace MoreConversationTopics
 
                 foreach (KeyValuePair<string, int> kvp in Game1.player.activeDialogueEvents.Pairs)
                 {
-                    output.AppendLine($"\t{kvp.Key} ({kvp.Value})\n");
+                    output.AppendLine($"\t{kvp.Key} ({kvp.Value})");
                 }
                 Monitor.Log(output.ToString(), LogLevel.Debug);
             }
@@ -123,7 +137,7 @@ namespace MoreConversationTopics
                 return;
 
             // Try to get the duration from the input arguments, default to 1 if cannot be parsed
-            if (!int.TryParse(args[0], out int duration))
+            if (!int.TryParse(args[1], out int duration))
             {
                 duration = 1;
                 Monitor.Log($"Couldn't parse duration as an integer, defaulting to 1 day", LogLevel.Warn);
@@ -157,6 +171,51 @@ namespace MoreConversationTopics
             catch (Exception ex)
             {
                 Monitor.Log($"Bad or missing argument with exception: {ex}", LogLevel.Error);
+            }
+        }
+
+        // Check if CT is repeatable for console command
+        public static void console_IsRepeatableCT(string command, string[] args)
+        {
+            if (!Context.IsWorldReady)
+                return;
+
+            try
+            {
+                if (IsRepeatableCTAddedByMod(args[0]))
+                {
+                    Monitor.Log($"Yes, {args[0]} is a repeatable CT", LogLevel.Debug);
+                }
+                else
+                {
+                    Monitor.Log($"No, {args[0]} is not a repeatable CT", LogLevel.Debug);
+                }
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"Bad or missing argument with exception: {ex}", LogLevel.Error);
+            }
+        }
+
+        // List of repeatable conversation topics for console command
+        public static void console_AllRepeatableCTs(string command, string[] args)
+        {
+            if (!Context.IsWorldReady)
+                return;
+
+            try
+            {
+                StringBuilder output = new StringBuilder("Repeatable conversation topics:\n");
+
+                foreach (KeyValuePair<string, string> kvp in Helper.GameContent.Load<Dictionary<string, string>>(ModEntry.modContentPath))
+                {
+                    output.AppendLine($"\t{kvp.Key}");
+                }
+                Monitor.Log(output.ToString(), LogLevel.Debug);
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"Failed to print repeatable conversation topics with exception: {ex}", LogLevel.Error);
             }
         }
     }
