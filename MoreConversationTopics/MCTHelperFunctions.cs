@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using StardewModdingAPI;
 using StardewValley;
 
@@ -48,7 +50,7 @@ namespace MoreConversationTopics
             // Check if the conversation topic has already been added
             if (playerToAddTo.activeDialogueEvents.ContainsKey(conversationTopic))
             {
-                Monitor.Log($"{conversationTopic} because it's already there, extending duration", LogLevel.Trace);
+                Monitor.Log($"Not adding {conversationTopic} because it's already there, extending duration", LogLevel.Trace);
             }
 
             // Adds or extends the CT.
@@ -70,7 +72,6 @@ namespace MoreConversationTopics
             => TryAddCT(Game1.player, conversationTopic, duration);
 
         // Prints out all current conversation topics for console command
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "SMAPI command format")]
         public static void console_GetCurrentCTs(string command, string[] args)
         {
             if (!Context.IsWorldReady)
@@ -78,7 +79,13 @@ namespace MoreConversationTopics
 
             try
             {
-                Monitor.Log(string.Join(", ", Game1.player.activeDialogueEvents.Keys), LogLevel.Debug);
+                StringBuilder output = new StringBuilder("Active conversation topics (days remaining):\n");
+
+                foreach (KeyValuePair<string, int> kvp in Game1.player.activeDialogueEvents.Pairs)
+                {
+                    output.AppendLine($"\t{kvp.Key} ({kvp.Value})\n");
+                }
+                Monitor.Log(output.ToString(), LogLevel.Debug);
             }
             catch (Exception ex)
             {
@@ -87,7 +94,6 @@ namespace MoreConversationTopics
         }
 
         // Checks mail flags for console command
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "SMAPI command format")]
         public static void console_HasMailFlag(string command, string[] args)
         {
             if (!Context.IsWorldReady)
@@ -111,7 +117,6 @@ namespace MoreConversationTopics
         }
 
         // Add conversation topic for console command
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "SMAPI command format")]
         public static void console_AddConversationTopic(string command, string[] args)
         {
             if (!Context.IsWorldReady)
@@ -139,7 +144,6 @@ namespace MoreConversationTopics
         }
 
         // Remove conversation topic for console command
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "SMAPI command format")]
         public static void console_RemoveConversationTopic(string command, string[] args)
         {
             if (!Context.IsWorldReady)
