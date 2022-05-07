@@ -66,7 +66,7 @@ All the conversation topics have default lengths but are also configurable in th
 
 ## Console Commands
 This mod also adds some new console commands:
-   * `vl.mct.current_CTs`, which prints a list of the current active conversation topics to the console. 
+   * `vl.mct.current_CTs`, which prints a list of the current active conversation topics and their durations to the console. 
    * `vl.mct.has_flag <flagName>`, which tells you whether or not you have that mail flag.
    * `vl.mct.add_CT <topicName> <duration>`, which adds the specified conversation topic with a duration of 1 day by default, or can specify duration.
    * `vl.mct.remove_CT <topicName>`, which removes the specified conversation topic.
