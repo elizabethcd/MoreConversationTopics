@@ -1,0 +1,11 @@
+{
+    "Name": "MCT Repeatable Example",
+    "Author": "Your Name",
+    "Version": "1.0.0",
+    "Description": "Adds repeatability to some conversation topics.",
+    "UniqueID": "YourName.MCT.YourModName",
+    "UpdateKeys": [], 
+    "ContentPackFor": {
+        "UniqueID": "Pathoschild.ContentPatcher"
+    }
+}

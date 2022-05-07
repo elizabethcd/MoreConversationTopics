@@ -1,0 +1,13 @@
+{
+    "Format": "1.25.0",
+    "Changes": [
+        {
+            "Action": "EditData",
+            "Target": "Mods/vl.mct/RepeatableTopics",
+            "Entries": {
+                "myMod.myFirstRepeatableCTName": "",
+                "myMod.mySecondRepeatableCTName": ""
+            }
+        },
+    ]
+}
