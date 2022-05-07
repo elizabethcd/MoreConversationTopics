@@ -1,10 +1,7 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using HarmonyLib;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewModdingAPI.Utilities;
-using StardewValley;
 using MoreConversationTopics.Integrations;
 using System.Reflection;
 
@@ -16,7 +13,6 @@ namespace MoreConversationTopics
 
         // Properties
         private ModConfig Config;
-        private int countdown;
 
         /*********
         ** Public methods
@@ -66,9 +62,11 @@ namespace MoreConversationTopics
             helper.Events.GameLoop.GameLaunched += this.RegisterGMCM;
 
             // Add asset editor
-            countdown = 5;
-            helper.Events.GameLoop.UpdateTicked += this.GameLoop_UpdateTicked;
+            helper.Events.Content.AssetRequested += this.OnAssetRequested;
         }
+
+        private void OnAssetRequested(object sender, AssetRequestedEventArgs e)
+            => JojaEventAssetEditor.Edit(e);
 
         /// <summary>
         /// Generates the GMCM for this mod by looking at the structure of the config class.
@@ -78,8 +76,7 @@ namespace MoreConversationTopics
         /// <remarks>To add a new setting, add the details to the i18n file. Currently handles: bool.</remarks>
         private void RegisterGMCM(object sender, GameLaunchedEventArgs e)
         {
-            IModInfo gmcm = this.Helper.ModRegistry.Get("spacechase0.GenericModConfigMenu");
-            if (gmcm is null)
+            if (this.Helper.ModRegistry.Get("spacechase0.GenericModConfigMenu") is not IModInfo gmcm)
             {
                 this.Monitor.Log(this.Helper.Translation.Get("GmcmNotFound"), LogLevel.Debug);
                 return;
@@ -89,6 +86,7 @@ namespace MoreConversationTopics
                 this.Monitor.Log(this.Helper.Translation.Get("GmcmVersionMessage", new { version = "1.6.0", currentversion = gmcm.Manifest.Version.ToString() }), LogLevel.Info);
                 return;
             }
+
             var configMenu = this.Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
             if (configMenu is null)
             {
@@ -131,18 +129,6 @@ namespace MoreConversationTopics
                 {
                     this.Monitor.Log($"{property.Name} unaccounted for.", LogLevel.Warn);
                 }
-            }
-        }
-
-        // Adds asset editors when needed
-        private void GameLoop_UpdateTicked(object sender, UpdateTickedEventArgs e)
-        {
-            // If the countdown has expired, then add the Joja event asset editor 5 ticks into the game
-            if (--countdown <= 0)
-            {
-                this.Helper.Content.AssetEditors.Add(new JojaEventAssetEditor());
-                this.Helper.Events.GameLoop.UpdateTicked -= GameLoop_UpdateTicked;
-                Monitor.Log("Registered Joja completion event asset editor", LogLevel.Trace);
             }
         }
     }
