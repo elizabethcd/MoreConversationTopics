@@ -86,7 +86,7 @@ This mod also adds some new console commands:
    * `newHorse` triggered when the player gets a horse
    * `newCat` triggered when the player adopts a cat
    * `newDog` triggered when the player adopts a dog
-   * `childDoved` triggered when the player turns their children into doves
+   * `childrenDoved` triggered when the player turns their children into doves
    * `newBarn` triggered when the player builds a barn
    * `newCoop` triggered when the player builds a coop
    * other `newBuildingName` triggered when the player builds a building

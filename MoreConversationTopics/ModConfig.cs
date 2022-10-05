@@ -19,5 +19,6 @@
         public int WitchVisitDuration { get; set; } = 7;
         public int FairyVisitDuration { get; set; } = 7;
         public int IslandResortDuration { get; set; } = 7;
+        public int SelfishShrineDuration { get; set; } = 7;
     }
 }
