@@ -87,6 +87,9 @@ This mod also adds some new console commands:
    * `newCat` triggered when the player adopts a cat
    * `newDog` triggered when the player adopts a dog
    * `childDoved` triggered when the player turns their children into doves
+   * `newBarn` triggered when the player builds a barn
+   * `newCoop` triggered when the player builds a coop
+   * other `newBuildingName` triggered when the player builds a building
    * `UFOEscaped` triggered when the Strange Capsule cracks open
    * `passedOutExhausted` triggered when the player passes out due to low energy
    * `passedOutInjured` triggered when the player passes out due to low health
