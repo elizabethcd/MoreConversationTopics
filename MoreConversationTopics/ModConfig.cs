@@ -3,6 +3,7 @@
     public class ModConfig
     {
         // Durations are set to 7 days by default, except joja_Greenhouse and joja_Complete match vanilla
+        public int EngagementDuration { get; set; } = 3;
         public int WeddingDuration { get; set; } = 7;
         public int BirthDuration { get; set; } = 7;
         public int DivorceDuration { get; set; } = 7;
