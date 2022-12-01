@@ -108,15 +108,29 @@ namespace MoreConversationTopics
             }
         }
 
-        private static void NPC_engagementResponse_Postfix(NPC __instance, Farmer farmer, bool asRoommate)
+        private static void NPC_engagementResponse_Postfix(NPC __instance, Farmer who, bool asRoommate)
         {
-            try
+            if (asRoommate)
             {
-                MCTHelperFunctions.AddOrExtendCT(farmer, "engaged", Config.EngagementDuration);
+                try
+                {
+                    MCTHelperFunctions.AddOrExtendCT(who, "newRoommate", Config.EngagementDuration);
+                }
+                catch (Exception ex)
+                {
+                    Monitor.Log($"Failed to add player's wedding conversation topic with exception: {ex}", LogLevel.Error);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Monitor.Log($"Failed to add player's wedding conversation topic with exception: {ex}", LogLevel.Error);
+                try
+                {
+                    MCTHelperFunctions.AddOrExtendCT(who, "engaged", Config.EngagementDuration);
+                }
+                catch (Exception ex)
+                {
+                    Monitor.Log($"Failed to add player's wedding conversation topic with exception: {ex}", LogLevel.Error);
+                }
             }
         }
 
