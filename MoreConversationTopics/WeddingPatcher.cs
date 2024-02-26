@@ -1,5 +1,6 @@
 ﻿using System;
 using HarmonyLib;
+using Microsoft.Xna.Framework.Input;
 using StardewModdingAPI;
 using StardewValley;
 
@@ -32,19 +33,6 @@ namespace MoreConversationTopics
             catch (Exception ex)
             {
                 Monitor.Log($"Failed to add postfix wedding event with exception: {ex}", LogLevel.Error);
-            }
-
-            try
-            {
-                Monitor.Log("Adding Harmony postfix to getPlayerWeddingEvent() in Utility.cs", LogLevel.Trace);
-                harmony.Patch(
-                    original: AccessTools.Method(typeof(Utility), nameof(Utility.getPlayerWeddingEvent)),
-                    postfix: new HarmonyMethod(typeof(WeddingPatcher), nameof(WeddingPatcher.Utility_getPlayerWeddingEvent_Postfix))
-                );
-            }
-            catch (Exception ex)
-            {
-                Monitor.Log($"Failed to add postfix player wedding event with exception: {ex}", LogLevel.Error);
             }
 
             try
@@ -84,6 +72,22 @@ namespace MoreConversationTopics
             catch (Exception ex)
             {
                 Monitor.Log($"Failed to add wedding conversation topic with exception: {ex}", LogLevel.Error);
+            }
+
+            // Try seeing if there's a player spouse
+            try
+            {
+                Farmer spouseFarmer = null;
+                long? spouseFarmerId = farmer.team.GetSpouse(farmer.UniqueMultiplayerID);
+                if (spouseFarmerId.HasValue)
+                {
+                    spouseFarmer = Game1.getFarmerMaybeOffline(spouseFarmerId.Value);
+                    MCTHelperFunctions.AddOrExtendCT(spouseFarmer, "wedding", Config.WeddingDuration);
+                }
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"Failed to add player's spouse wedding conversation topic with exception: {ex}", LogLevel.Error);
             }
         }
 
