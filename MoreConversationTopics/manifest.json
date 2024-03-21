@@ -5,6 +5,6 @@
   "Description": "Adds conversation topics that need code to add.",
   "UniqueID": "violetlizabet.MoreConvoTopics",
   "EntryDll": "MoreConversationTopics.dll",
-  "MinimumApiVersion": "4.0.0-alpha.20231012",
+  "MinimumApiVersion": "4.0.0",
   "UpdateKeys": [ "Nexus:10008", "GitHub:elizabethcd/MoreConversationTopics" ]
 }
